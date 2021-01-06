@@ -9,6 +9,7 @@ import main.*;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class IdentifyElementsTest {
 
@@ -98,6 +99,28 @@ public class IdentifyElementsTest {
 		driver.close();
 		
 	}
+	
+	
+	//Count of links in a page. Limiting of scope
+		@Test
+		public void testFive() {
+			
+			browserObj = new Browser();
+			driver = browserObj.getDriverValue();
+			
+			driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+			driver.manage().window().maximize();
+			
+			System.out.println("The link count in whole page "+driver.findElements(By.tagName("a")).size());
+			
+			WebElement footerDriver = driver.findElement(By.id("gf-BIG"));
+			System.out.println("The link count in footer :" +footerDriver.findElements(By.tagName("a")).size());//limiting the scope
+			
+			WebElement columnFooter = footerDriver.findElement(By.xpath("//*[@id=\"gf-BIG\"]/table/tbody/tr/td[1]/ul"));//limiting scope again
+			System.out.println("The link count in column footer :" + columnFooter.findElements(By.tagName("a")).size());
+			driver.close();
+			
+		}
 	
 	
 	
